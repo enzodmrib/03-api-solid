@@ -1,8 +1,7 @@
-import { PrismaUsersRepository } from '@/repositories/prisma/prisma-users.repository'
+import { UserAlreadyExistsError } from '@/use-cases/errors/user-already-exists-error'
+import { makeRegisterUseCase } from '@/use-cases/factories/make-register-use-case'
 import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
-import { UserAlreadyExistsError } from '../use-cases/errors/user-already-exists-error'
-import { RegisterUseCase } from '../use-cases/register'
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   const registerBodySchema = z.object({
@@ -21,8 +20,7 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
      * and the code logic is dealt in the same way for every
      * type of db
      */
-    const usersRepository = new PrismaUsersRepository() // dependency instantiation
-    const registerUseCase = new RegisterUseCase(usersRepository) // dependency is passed as parameter (inversion)
+    const registerUseCase = makeRegisterUseCase() // register use case factory
 
     await registerUseCase.execute({
       name,
