@@ -1,5 +1,5 @@
-import { GymsRepository } from '@/repositories/gyms-repository'
-import { Gym } from '@prisma/client'
+import { Gym } from '@prisma/client';
+import { GymsRepository } from '@/repositories/gyms-repository';
 
 interface CreateGymUseCaseRequest {
   title: string
@@ -29,8 +29,8 @@ export class CreateGymUseCase {
       phone,
       latitude,
       longitude,
-    })
+    });
 
-    return { gym }
+    return { gym };
   }
 }
