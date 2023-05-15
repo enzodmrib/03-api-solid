@@ -24,6 +24,7 @@
       "import/no-extraneous-dependencies": "off",
       "no-await-in-loop": "off",
       "camelcase": "off",
-      "no-plusplus": "off"
+      "no-plusplus": "off",
+      "class-methods-use-this": "off"
     }
 }
